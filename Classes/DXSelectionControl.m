@@ -128,7 +128,7 @@
     if (foundResult != NSNotFound) {
         [self selectSelectableWithIndex:foundResult];
     }else {
-        DDLogInfo(@"selectable %@ is not found",obj);
+        NSLog(@"selectable %@ is not found",obj);
     }
 }
 
@@ -143,7 +143,7 @@
         }
         [self notifySelectionChangedWithIndex:index];
     }else {
-        DDLogError(@"index %lx is out of bounds , we will do nothing",(unsigned long)index);
+        NSLog(@"index %lx is out of bounds , we will do nothing",(unsigned long)index);
     }
 }
 
