@@ -34,34 +34,36 @@
 @protocol DXSelectable <NSObject>
 
 @property (nonatomic,getter=isSelected) BOOL selected;
+/**
+ *  @author DeanXu, 15-02-28 16:02:05
+ *
+ *  used for sorting selectables
+ */
 @property (nonatomic) NSInteger tag;
 
+/**
+ *  @author DeanXu, 15-02-28 15:02:37
+ *
+ *  it's selectable's duty to perform action on target while selectable wants to toggle 'selected' state
+ *
+ */
 - (void)addUserInteractionTarget:(id)target action:(SEL)action;
 - (void)removeUserInteractionTarget:(id)target action:(SEL)action;
 
 @end
-
+/**
+ *  @author DeanXu, 15-02-28 16:02:17
+ *
+ *  UIControl supports DXSelectable interface
+ *
+ */
 @interface UIControl (DXSelectable)<DXSelectable>
-
-@end
-
-@implementation UIControl (DXSelectable)
-
-- (void)addUserInteractionTarget:(id)target action:(SEL)action
-{
-    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)removeUserInteractionTarget:(id)target action:(SEL)action
-{
-    [self removeTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-}
 
 @end
 
 @interface DXSelectionControl : NSObject<DXSelectionControlInterface>
 
-@property (strong,nonatomic) IBOutletCollection(UIControl) NSArray *selectables;
+@property (strong,nonatomic) IBOutletCollection(id) NSArray *selectables;
 //redeclaration
 - (void)deselectAllSelectablesExceptForSelectable:(id<DXSelectable>)obj;
 - (void)deselectSelectable:(id<DXSelectable>)selectable;

@@ -8,6 +8,20 @@
 
 #import "DXSelectionControl.h"
 
+@implementation UIControl (DXSelectable)
+
+- (void)addUserInteractionTarget:(id)target action:(SEL)action
+{
+    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)removeUserInteractionTarget:(id)target action:(SEL)action
+{
+    [self removeTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+@end
+
 @interface DXSelectionControl ()
 
 @property (strong,nonatomic) NSMutableSet *selectedIndexes;
