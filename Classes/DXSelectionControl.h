@@ -18,6 +18,8 @@
 @property (assign,nonatomic) BOOL singleSelection;
 @property (assign,nonatomic) BOOL canCancelSelection;
 @property (assign,nonatomic) BOOL allowNoneSelection;
+@property (assign,nonatomic) BOOL userInteractionEnabled;
+
 @property (copy,nonatomic) void(^selectionChangedBlock)(id<DXSelectionControlInterface> control, NSInteger index,BOOL selecting);
 
 #pragma mark - handle selection

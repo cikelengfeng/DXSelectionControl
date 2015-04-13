@@ -38,6 +38,7 @@
 @synthesize singleSelection = _singleSelection;
 @synthesize canCancelSelection = _canCancelSelection;
 @synthesize allowNoneSelection = _allowNoneSelection;
+@synthesize userInteractionEnabled = _userInteractionEnabled;
 
 - (id)init
 {
@@ -58,6 +59,7 @@
         [self trackTouchedInsideEventForControl:obj];
     }];
     _selectedIndexes = [NSMutableSet setWithCapacity:_selectables.count];
+    _userInteractionEnabled = YES;
 }
 
 - (void)setSelectables:(NSArray *)selectables
@@ -80,6 +82,9 @@
 }
 - (void)onUserInteractWithSelectable:(id<DXSelectable>)selectable
 {
+    if (!self.userInteractionEnabled) {
+        return;
+    }
     if (selectable.selected) {
         [self deselectSelectable:selectable];
     }else {
